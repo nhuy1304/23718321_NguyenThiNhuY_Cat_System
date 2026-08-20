@@ -1103,3 +1103,40 @@ flowchart LR
 | AC21 | BR06 - Quản lý và theo dõi hoạt động | Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền |
 
 
+## 17. Requirement Traceability Matrix
+
+| Business Goal (BG) | Business Requirement (BR) | Functional Requirement (FR) | Use Case (UC) | Acceptance Criteria (AC) |
+|---|---|---|---|---|
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR01 - Đặt chuyến | FR01 - Nhập thông tin chuyến | UC04 - Đặt chuyến xe | AC01 - Customer có thể nhập điểm đón, điểm đến và chọn loại xe |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR01 - Đặt chuyến | FR02 - Chọn loại xe | UC04 - Đặt chuyến xe | AC01 - Customer có thể nhập điểm đón, điểm đến và chọn loại xe |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR01 - Đặt chuyến | FR03 - Gửi yêu cầu đặt chuyến | UC04 - Đặt chuyến xe | AC02 - Customer có thể gửi yêu cầu đặt chuyến và System tiếp nhận yêu cầu |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR01 - Đặt chuyến | FR03 - Gửi yêu cầu đặt chuyến | UC04 - Đặt chuyến xe | AC03 - Sau khi tiếp nhận yêu cầu, System thông báo trạng thái tiếp nhận cho Customer |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR04 - Xác định vị trí Customer | UC04 - Đặt chuyến xe | AC04 - System chỉ tìm và gửi yêu cầu đến Driver đang sẵn sàng và phù hợp với chuyến |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR05 - Xác định Driver sẵn sàng | UC04 - Đặt chuyến xe | AC04 - System chỉ tìm và gửi yêu cầu đến Driver đang sẵn sàng và phù hợp với chuyến |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR06 - Tìm Driver phù hợp | UC04 - Đặt chuyến xe | AC04 - System chỉ tìm và gửi yêu cầu đến Driver đang sẵn sàng và phù hợp với chuyến |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR07 - Ưu tiên Driver phù hợp và gần Customer | UC04 - Đặt chuyến xe | AC04 - System chỉ tìm và gửi yêu cầu đến Driver đang sẵn sàng và phù hợp với chuyến |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR08 - Gửi yêu cầu chuyến cho Driver | UC12 - Nhận và xử lý yêu cầu chuyến | AC05 - Khi Driver chấp nhận, System phải xác nhận Driver đó cho chuyến và thông báo cho Customer |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR09 - Xử lý Driver từ chối hoặc không phản hồi | UC12 - Nhận và xử lý yêu cầu chuyến | AC06 - Khi Driver từ chối hoặc không phản hồi, System phải tiếp tục tìm Driver khác mà Customer không cần tạo lại yêu cầu |
+| BG01 - Giảm thời gian tìm và phân công tài xế | BR02 - Tìm và phân công tài xế | FR10 - Thông báo không tìm được Driver | UC12 - Nhận và xử lý yêu cầu chuyến | AC07 - Khi không tìm được Driver phù hợp, System phải thông báo rõ ràng cho Customer |
+| BG02 - Hỗ trợ khách hàng theo dõi chuyến | BR03 - Theo dõi chuyến đi | FR11 - Theo dõi Driver | UC05 - Theo dõi chuyến đi | AC08 - Customer có thể xem Driver đã nhận chuyến và thời gian dự kiến Driver đến |
+| BG02 - Hỗ trợ khách hàng theo dõi chuyến | BR03 - Theo dõi chuyến đi | FR12 - Theo dõi trạng thái chuyến | UC05 - Theo dõi chuyến đi | AC09 - Customer có thể xem trạng thái hiện tại của chuyến đi |
+| BG02 - Hỗ trợ khách hàng theo dõi chuyến | BR03 - Theo dõi chuyến đi | FR13 - Cập nhật trạng thái chuyến | UC13 - Thực hiện và cập nhật chuyến | AC10 - Driver có thể cập nhật các trạng thái: đã đến điểm đón, đã đón khách, đang di chuyển và hoàn thành chuyến |
+| BG03 - Hỗ trợ tính cước và thanh toán | BR04 - Tính cước và thanh toán | FR14 - Tính cước chuyến đi | UC07 - Thanh toán | AC11 - Sau khi chuyến hoàn thành, System phải xác định được số tiền Customer phải trả |
+| BG03 - Hỗ trợ tính cước và thanh toán | BR04 - Tính cước và thanh toán | FR15 - Thanh toán tiền mặt | UC07 - Thanh toán | AC12 - Customer có thể chọn thanh toán bằng tiền mặt hoặc phương thức thanh toán điện tử |
+| BG03 - Hỗ trợ tính cước và thanh toán | BR04 - Tính cước và thanh toán | FR16 - Thanh toán điện tử | UC07 - Thanh toán | AC12 - Customer có thể chọn thanh toán bằng tiền mặt hoặc phương thức thanh toán điện tử |
+| BG03 - Hỗ trợ tính cước và thanh toán | BR04 - Tính cước và thanh toán | FR16 - Thanh toán điện tử | UC20 - Xử lý thanh toán điện tử | AC13 - Thanh toán điện tử phải được xử lý thông qua nhà cung cấp thanh toán bên ngoài |
+| BG03 - Hỗ trợ tính cước và thanh toán | BR04 - Tính cước và thanh toán | FR17 - Xử lý thanh toán thất bại | UC07 - Thanh toán | AC14 - Khi thanh toán điện tử thất bại, System phải thông báo cho Customer và cho phép xử lý lại theo chính sách của doanh nghiệp |
+| BG04 - Đảm bảo thông tin được thông báo kịp thời | BR05 - Quản lý và thông báo | FR18 - Gửi thông báo đặt xe | UC21 - Cung cấp dịch vụ thông báo | AC15 - Customer nhận được thông báo khi yêu cầu đặt xe được tiếp nhận, Driver nhận chuyến, Driver đến điểm đón và chuyến hoàn thành |
+| BG04 - Đảm bảo thông tin được thông báo kịp thời | BR05 - Quản lý và thông báo | FR19 - Gửi thông báo chuyến đi | UC21 - Cung cấp dịch vụ thông báo | AC15 - Customer nhận được thông báo khi yêu cầu đặt xe được tiếp nhận, Driver nhận chuyến, Driver đến điểm đón và chuyến hoàn thành |
+| BG04 - Đảm bảo thông tin được thông báo kịp thời | BR05 - Quản lý và thông báo | FR19 - Gửi thông báo chuyến đi | UC21 - Cung cấp dịch vụ thông báo | AC17 - Driver nhận được thông báo về chuyến mới hoặc thay đổi liên quan đến chuyến đang thực hiện |
+| BG04 - Đảm bảo thông tin được thông báo kịp thời | BR05 - Quản lý và thông báo | FR20 - Gửi thông báo thanh toán | UC21 - Cung cấp dịch vụ thông báo | AC16 - Customer nhận được thông báo về kết quả thanh toán |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR21 - Quản lý Customer | UC14 - Quản lý khách hàng | AC18 - Operations Staff có thể quản lý Customer, Driver, phương tiện và chuyến đi |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR22 - Quản lý Driver | UC15 - Quản lý tài xế | AC18 - Operations Staff có thể quản lý Customer, Driver, phương tiện và chuyến đi |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR23 - Quản lý phương tiện | UC16 - Quản lý phương tiện | AC18 - Operations Staff có thể quản lý Customer, Driver, phương tiện và chuyến đi |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR24 - Quản lý chuyến đi | UC17 - Quản lý chuyến đi | AC19 - Operations Staff có thể xem chuyến đang diễn ra, trạng thái Driver và tra cứu lịch sử giao dịch |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR25 - Tra cứu giao dịch | UC18 - Xử lý chuyến bị lỗi và tra cứu giao dịch | AC19 - Operations Staff có thể xem chuyến đang diễn ra, trạng thái Driver và tra cứu lịch sử giao dịch |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR26 - Xem báo cáo hoạt động | UC19 - Xem báo cáo hoạt động | AC20 - System cung cấp báo cáo về số lượng chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy và hiệu quả Driver |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR21 - Quản lý Customer | UC14 - Quản lý khách hàng | AC21 - Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR22 - Quản lý Driver | UC15 - Quản lý tài xế | AC21 - Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR23 - Quản lý phương tiện | UC16 - Quản lý phương tiện | AC21 - Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền |
+| BG05 - Hỗ trợ doanh nghiệp quản lý và theo dõi hoạt động | BR06 - Quản lý và theo dõi hoạt động | FR24 - Quản lý chuyến đi | UC17 - Quản lý chuyến đi | AC21 - Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền |
