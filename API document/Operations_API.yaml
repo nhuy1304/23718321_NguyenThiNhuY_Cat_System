@@ -1,0 +1,181 @@
+
+# Operations API
+
+## 1. Get Customer List
+
+Endpoint: GET /api/operations/customers
+
+Description: Get the list of customers for management.
+
+Response:
+{
+  "customers": [
+    {
+      "customerId": "C001",
+      "name": "Nguyen Van A",
+      "phone": "0901234567",
+      "email": "nguyenvana@email.com"
+    }
+  ]
+}
+
+---
+
+## 2. Get Driver List
+
+Endpoint: GET /api/operations/drivers
+
+Description: Get the list of drivers for management.
+
+Response:
+{
+  "drivers": [
+    {
+      "driverId": "D001",
+      "name": "Tran Van B",
+      "phone": "0912345678",
+      "status": "AVAILABLE",
+      "location": "District 1"
+    }
+  ]
+}
+
+---
+
+## 3. Get Vehicle List
+
+Endpoint: GET /api/operations/vehicles
+
+Description: Get the list of vehicles for management.
+
+Response:
+{
+  "vehicles": [
+    {
+      "vehicleId": "V001",
+      "vehicleType": "CAR",
+      "licensePlate": "51A-12345",
+      "driverId": "D001"
+    }
+  ]
+}
+
+---
+
+## 4. Get Trip List
+
+Endpoint: GET /api/operations/trips
+
+Description: Get the list of trips for operational management.
+
+Response:
+{
+  "trips": [
+    {
+      "tripId": "T001",
+      "customerId": "C001",
+      "driverId": "D001",
+      "pickupLocation": "District 1",
+      "destination": "Tan Son Nhat Airport",
+      "status": "COMPLETED",
+      "fare": 120000
+    }
+  ]
+}
+
+---
+
+## 5. Get Trip Details
+
+Endpoint: GET /api/operations/trips/{tripId}
+
+Description: Get detailed information about a trip for operational management.
+
+Response:
+{
+  "tripId": "T001",
+  "customerId": "C001",
+  "driverId": "D001",
+  "pickupLocation": "District 1",
+  "destination": "Tan Son Nhat Airport",
+  "vehicleType": "CAR",
+  "status": "COMPLETED",
+  "fare": 120000
+}
+
+---
+
+## 6. Get Transaction List
+
+Endpoint: GET /api/operations/transactions
+
+Description: Look up payment and transaction information.
+
+Response:
+{
+  "transactions": [
+    {
+      "transactionId": "TX001",
+      "transactionType": "PAYMENT",
+      "status": "COMPLETED",
+      "transactionTime": "2026-09-03T10:30:00"
+    }
+  ]
+}
+
+---
+
+## 7. Get Activity Reports
+
+Endpoint: GET /api/operations/reports
+
+Description: Get operational activity reports.
+
+Response:
+{
+  "reportDate": "2026-09-03",
+  "totalTrips": 120,
+  "completedTrips": 110,
+  "cancelledTrips": 10,
+  "totalRevenue": 15000000
+}
+
+---
+
+## 8. Update Driver Status
+
+Endpoint: PUT /api/operations/drivers/{driverId}/status
+
+Description: Update the availability status of a driver.
+
+Request Body:
+{
+  "status": "UNAVAILABLE"
+}
+
+Response:
+{
+  "driverId": "D001",
+  "status": "UNAVAILABLE",
+  "message": "Driver status updated successfully"
+}
+
+---
+
+## 9. Update Trip Status
+
+Endpoint: PUT /api/operations/trips/{tripId}/status
+
+Description: Update the status of a trip from the operations system.
+
+Request Body:
+{
+  "status": "CANCELLED"
+}
+
+Response:
+{
+  "tripId": "T001",
+  "status": "CANCELLED",
+  "message": "Trip status updated successfully"
+}

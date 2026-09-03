@@ -1,0 +1,134 @@
+
+# Driver API
+
+## 1. Register Driver
+
+Endpoint: POST /api/drivers/register
+
+Description: Register a new driver account.
+
+Request Body:
+{
+  "name": "Tran Van B",
+  "phone": "0912345678",
+  "password": "123456"
+}
+
+Response:
+{
+  "driverId": "D001",
+  "message": "Driver registration successful"
+}
+
+---
+
+## 2. Update Driver Profile
+
+Endpoint: PUT /api/drivers/{driverId}
+
+Description: Update driver profile and vehicle information.
+
+Request Body:
+{
+  "name": "Tran Van B",
+  "phone": "0912345678",
+  "vehicleType": "CAR",
+  "licensePlate": "51A-12345"
+}
+
+Response:
+{
+  "message": "Driver information updated successfully"
+}
+
+---
+
+## 3. Update Driver Availability
+
+Endpoint: PUT /api/drivers/{driverId}/status
+
+Description: Update driver availability status.
+
+Request Body:
+{
+  "status": "AVAILABLE"
+}
+
+Response:
+{
+  "driverId": "D001",
+  "status": "AVAILABLE",
+  "message": "Driver status updated successfully"
+}
+
+---
+
+## 4. Get Driver Information
+
+Endpoint: GET /api/drivers/{driverId}
+
+Description: Get driver profile and current status.
+
+Response:
+{
+  "driverId": "D001",
+  "name": "Tran Van B",
+  "phone": "0912345678",
+  "status": "AVAILABLE",
+  "location": "District 1"
+}
+
+---
+
+## 5. Accept Trip
+
+Endpoint: POST /api/drivers/{driverId}/trips/{tripId}/accept
+
+Description: Driver accepts a trip request.
+
+Response:
+{
+  "tripId": "T001",
+  "driverId": "D001",
+  "message": "Trip accepted successfully"
+}
+
+---
+
+## 6. Reject Trip
+
+Endpoint: POST /api/drivers/{driverId}/trips/{tripId}/reject
+
+Description: Driver rejects a trip request.
+
+Response:
+{
+  "tripId": "T001",
+  "message": "Trip rejected. System will find another driver."
+}
+
+---
+
+## 7. Update Trip Status
+
+Endpoint: PUT /api/drivers/{driverId}/trips/{tripId}/status
+
+Description: Update the status of a trip.
+
+Request Body:
+{
+  "status": "ARRIVED"
+}
+
+Possible statuses:
+- ARRIVED
+- PICKED_UP
+- IN_PROGRESS
+- COMPLETED
+
+Response:
+{
+  "tripId": "T001",
+  "status": "ARRIVED",
+  "message": "Trip status updated successfully"
+}

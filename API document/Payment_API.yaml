@@ -1,0 +1,122 @@
+
+# Payment API
+
+## 1. Create Payment
+
+Endpoint: POST /api/payments
+
+Description: Create a payment for a completed trip.
+
+Request Body:
+{
+  "tripId": "T001",
+  "customerId": "C001",
+  "method": "CASH"
+}
+
+Response:
+{
+  "paymentId": "P001",
+  "tripId": "T001",
+  "amount": 120000,
+  "method": "CASH",
+  "status": "PENDING",
+  "message": "Payment created successfully"
+}
+
+---
+
+## 2. Get Payment Information
+
+Endpoint: GET /api/payments/{paymentId}
+
+Description: Get payment information and payment status.
+
+Response:
+{
+  "paymentId": "P001",
+  "tripId": "T001",
+  "amount": 120000,
+  "method": "CASH",
+  "status": "COMPLETED"
+}
+
+---
+
+## 3. Process Cash Payment
+
+Endpoint: POST /api/payments/{paymentId}/cash
+
+Description: Confirm a cash payment.
+
+Response:
+{
+  "paymentId": "P001",
+  "status": "COMPLETED",
+  "message": "Cash payment completed successfully"
+}
+
+---
+
+## 4. Process Electronic Payment
+
+Endpoint: POST /api/payments/{paymentId}/electronic
+
+Description: Process an electronic payment through an external payment provider.
+
+Request Body:
+{
+  "paymentMethod": "BANKING",
+  "amount": 120000
+}
+
+Response:
+{
+  "paymentId": "P001",
+  "status": "COMPLETED",
+  "message": "Electronic payment completed successfully"
+}
+
+---
+
+## 5. Handle Payment Failure
+
+Endpoint: POST /api/payments/{paymentId}/failure
+
+Description: Handle a failed electronic payment.
+
+Response:
+{
+  "paymentId": "P001",
+  "status": "FAILED",
+  "message": "Payment failed"
+}
+
+---
+
+## 6. Get Customer Payment History
+
+Endpoint: GET /api/customers/{customerId}/payments
+
+Description: Get the payment history of a customer.
+
+Response:
+{
+  "customerId": "C001",
+  "payments": [
+    {
+      "paymentId": "P001",
+      "tripId": "T001",
+      "amount": 120000,
+      "method": "CASH",
+      "status": "COMPLETED"
+    },
+    {
+      "paymentId": "P002",
+      "tripId": "T002",
+      "amount": 90000,
+      "method": "BANKING",
+      "status": "COMPLETED"
+    }
+  ]
+}

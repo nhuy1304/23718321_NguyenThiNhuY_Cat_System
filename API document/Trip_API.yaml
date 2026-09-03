@@ -1,0 +1,170 @@
+
+# Trip API
+
+## 1. Create Trip
+
+Endpoint: POST /api/trips
+
+Description: Create a new trip booking.
+
+Request Body:
+{
+  "customerId": "C001",
+  "pickupLocation": "District 1",
+  "destination": "Tan Son Nhat Airport",
+  "vehicleType": "CAR"
+}
+
+Response:
+{
+  "tripId": "T001",
+  "status": "PENDING",
+  "message": "Trip booking created successfully"
+}
+
+---
+
+## 2. Get Trip Information
+
+Endpoint: GET /api/trips/{tripId}
+
+Description: Get detailed information about a trip.
+
+Response:
+{
+  "tripId": "T001",
+  "customerId": "C001",
+  "driverId": "D001",
+  "pickupLocation": "District 1",
+  "destination": "Tan Son Nhat Airport",
+  "vehicleType": "CAR",
+  "status": "IN_PROGRESS",
+  "fare": 120000
+}
+
+---
+
+## 3. Cancel Trip
+
+Endpoint: PUT /api/trips/{tripId}/cancel
+
+Description: Cancel a trip booking.
+
+Response:
+{
+  "tripId": "T001",
+  "status": "CANCELLED",
+  "message": "Trip cancelled successfully"
+}
+
+---
+
+## 4. Track Trip
+
+Endpoint: GET /api/trips/{tripId}/tracking
+
+Description: Get the current location and status of the driver during the trip.
+
+Response:
+{
+  "tripId": "T001",
+  "driverId": "D001",
+  "driverLocation": "District 3",
+  "status": "IN_PROGRESS"
+}
+
+---
+
+## 5. Get Customer Trip History
+
+Endpoint: GET /api/customers/{customerId}/trips
+
+Description: Get the trip history of a customer.
+
+Response:
+{
+  "customerId": "C001",
+  "trips": [
+    {
+      "tripId": "T001",
+      "pickupLocation": "District 1",
+      "destination": "Tan Son Nhat Airport",
+      "status": "COMPLETED",
+      "fare": 120000
+    },
+    {
+      "tripId": "T002",
+      "pickupLocation": "District 5",
+      "destination": "District 7",
+      "status": "COMPLETED",
+      "fare": 90000
+    }
+  ]
+}
+
+---
+
+## 6. Update Trip Status
+
+Endpoint: PUT /api/trips/{tripId}/status
+
+Description: Update the current status of a trip.
+
+Request Body:
+{
+  "status": "IN_PROGRESS"
+}
+
+Possible statuses:
+- PENDING
+- ACCEPTED
+- ARRIVED
+- PICKED_UP
+- IN_PROGRESS
+- COMPLETED
+- CANCELLED
+
+Response:
+{
+  "tripId": "T001",
+  "status": "IN_PROGRESS",
+  "message": "Trip status updated successfully"
+}
+
+---
+
+## 7. Calculate Trip Fare
+
+Endpoint: GET /api/trips/{tripId}/fare
+
+Description: Calculate the fare after the trip is completed.
+
+Response:
+{
+  "tripId": "T001",
+  "fare": 120000,
+  "currency": "VND",
+  "message": "Trip fare calculated successfully"
+}
+
+---
+
+## 8. Rate Driver
+
+Endpoint: POST /api/trips/{tripId}/rating
+
+Description: Customer rates the driver after completing a trip.
+
+Request Body:
+{
+  "customerId": "C001",
+  "rating": 5,
+  "comment": "Good service"
+}
+
+Response:
+{
+  "tripId": "T001",
+  "rating": 5,
+  "message": "Driver rating submitted successfully"
+}

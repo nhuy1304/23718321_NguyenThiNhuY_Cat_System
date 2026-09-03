@@ -1,0 +1,178 @@
+# Notification API
+
+## 1. Send Booking Notification
+
+Endpoint: POST /api/notifications/booking
+
+Description: Send a notification to the customer about the trip booking status.
+
+Request Body:
+{
+  "customerId": "C001",
+  "tripId": "T001",
+  "type": "BOOKING",
+  "content": "Your trip booking has been created successfully."
+}
+
+Response:
+{
+  "notificationId": "N001",
+  "status": "SENT",
+  "message": "Booking notification sent successfully"
+}
+
+---
+
+## 2. Send Driver Trip Request
+
+Endpoint: POST /api/notifications/driver-trip-request
+
+Description: Send a trip request notification to a suitable driver.
+
+Request Body:
+{
+  "driverId": "D001",
+  "tripId": "T001",
+  "content": "You have received a new trip request."
+}
+
+Response:
+{
+  "notificationId": "N002",
+  "driverId": "D001",
+  "tripId": "T001",
+  "status": "SENT",
+  "message": "Trip request notification sent successfully"
+}
+
+---
+
+## 3. Send Trip Status Notification
+
+Endpoint: POST /api/notifications/trip-status
+
+Description: Notify the customer about changes in trip status.
+
+Request Body:
+{
+  "customerId": "C001",
+  "tripId": "T001",
+  "status": "DRIVER_ARRIVED",
+  "content": "Your driver has arrived."
+}
+
+Response:
+{
+  "notificationId": "N003",
+  "status": "SENT",
+  "message": "Trip status notification sent successfully"
+}
+
+---
+
+## 4. Send No Driver Notification
+
+Endpoint: POST /api/notifications/no-driver
+
+Description: Notify the customer when no suitable driver is available.
+
+Request Body:
+{
+  "customerId": "C001",
+  "tripId": "T001",
+  "content": "No suitable driver is currently available."
+}
+
+Response:
+{
+  "notificationId": "N004",
+  "status": "SENT",
+  "message": "No-driver notification sent successfully"
+}
+
+---
+
+## 5. Send Payment Notification
+
+Endpoint: POST /api/notifications/payment
+
+Description: Notify the customer about payment status.
+
+Request Body:
+{
+  "customerId": "C001",
+  "paymentId": "P001",
+  "status": "COMPLETED",
+  "content": "Your payment has been completed successfully."
+}
+
+Response:
+{
+  "notificationId": "N005",
+  "status": "SENT",
+  "message": "Payment notification sent successfully"
+}
+
+---
+
+## 6. Send Payment Failure Notification
+
+Endpoint: POST /api/notifications/payment-failure
+
+Description: Notify the customer when an electronic payment fails.
+
+Request Body:
+{
+  "customerId": "C001",
+  "paymentId": "P001",
+  "content": "Your electronic payment has failed. Please try again."
+}
+
+Response:
+{
+  "notificationId": "N006",
+  "status": "SENT",
+  "message": "Payment failure notification sent successfully"
+}
+
+---
+
+## 7. Get Customer Notifications
+
+Endpoint: GET /api/customers/{customerId}/notifications
+
+Description: Get notifications of a customer.
+
+Response:
+{
+  "customerId": "C001",
+  "notifications": [
+    {
+      "notificationId": "N001",
+      "type": "BOOKING",
+      "content": "Your trip booking has been created successfully.",
+      "status": "READ"
+    },
+    {
+      "notificationId": "N003",
+      "type": "TRIP_STATUS",
+      "content": "Your driver has arrived.",
+      "status": "UNREAD"
+    }
+  ]
+}
+
+---
+
+## 8. Mark Notification as Read
+
+Endpoint: PUT /api/notifications/{notificationId}/read
+
+Description: Mark a notification as read.
+
+Response:
+{
+  "notificationId": "N001",
+  "status": "READ",
+  "message": "Notification marked as read"
+}
