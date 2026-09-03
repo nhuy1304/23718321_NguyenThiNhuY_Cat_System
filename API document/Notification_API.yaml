@@ -1,170 +1,178 @@
+# Notification API
 
-# Trip API
+## 1. Send Booking Notification
 
-## 1. Create Trip
+Endpoint: POST /api/notifications/booking
 
-Endpoint: POST /api/trips
-
-Description: Create a new trip booking.
+Description: Send a notification to the customer about the trip booking status.
 
 Request Body:
 {
   "customerId": "C001",
-  "pickupLocation": "District 1",
-  "destination": "Tan Son Nhat Airport",
-  "vehicleType": "CAR"
+  "tripId": "T001",
+  "type": "BOOKING",
+  "content": "Your trip booking has been created successfully."
 }
 
 Response:
 {
-  "tripId": "T001",
-  "status": "PENDING",
-  "message": "Trip booking created successfully"
+  "notificationId": "N001",
+  "status": "SENT",
+  "message": "Booking notification sent successfully"
 }
 
 ---
 
-## 2. Get Trip Information
+## 2. Send Driver Trip Request
 
-Endpoint: GET /api/trips/{tripId}
+Endpoint: POST /api/notifications/driver-trip-request
 
-Description: Get detailed information about a trip.
+Description: Send a trip request notification to a suitable driver.
 
-Response:
+Request Body:
 {
-  "tripId": "T001",
-  "customerId": "C001",
   "driverId": "D001",
-  "pickupLocation": "District 1",
-  "destination": "Tan Son Nhat Airport",
-  "vehicleType": "CAR",
-  "status": "IN_PROGRESS",
-  "fare": 120000
+  "tripId": "T001",
+  "content": "You have received a new trip request."
 }
-
----
-
-## 3. Cancel Trip
-
-Endpoint: PUT /api/trips/{tripId}/cancel
-
-Description: Cancel a trip booking.
 
 Response:
 {
-  "tripId": "T001",
-  "status": "CANCELLED",
-  "message": "Trip cancelled successfully"
-}
-
----
-
-## 4. Track Trip
-
-Endpoint: GET /api/trips/{tripId}/tracking
-
-Description: Get the current location and status of the driver during the trip.
-
-Response:
-{
-  "tripId": "T001",
+  "notificationId": "N002",
   "driverId": "D001",
-  "driverLocation": "District 3",
-  "status": "IN_PROGRESS"
+  "tripId": "T001",
+  "status": "SENT",
+  "message": "Trip request notification sent successfully"
 }
 
 ---
 
-## 5. Get Customer Trip History
+## 3. Send Trip Status Notification
 
-Endpoint: GET /api/customers/{customerId}/trips
+Endpoint: POST /api/notifications/trip-status
 
-Description: Get the trip history of a customer.
+Description: Notify the customer about changes in trip status.
 
-Response:
+Request Body:
 {
   "customerId": "C001",
-  "trips": [
+  "tripId": "T001",
+  "status": "DRIVER_ARRIVED",
+  "content": "Your driver has arrived."
+}
+
+Response:
+{
+  "notificationId": "N003",
+  "status": "SENT",
+  "message": "Trip status notification sent successfully"
+}
+
+---
+
+## 4. Send No Driver Notification
+
+Endpoint: POST /api/notifications/no-driver
+
+Description: Notify the customer when no suitable driver is available.
+
+Request Body:
+{
+  "customerId": "C001",
+  "tripId": "T001",
+  "content": "No suitable driver is currently available."
+}
+
+Response:
+{
+  "notificationId": "N004",
+  "status": "SENT",
+  "message": "No-driver notification sent successfully"
+}
+
+---
+
+## 5. Send Payment Notification
+
+Endpoint: POST /api/notifications/payment
+
+Description: Notify the customer about payment status.
+
+Request Body:
+{
+  "customerId": "C001",
+  "paymentId": "P001",
+  "status": "COMPLETED",
+  "content": "Your payment has been completed successfully."
+}
+
+Response:
+{
+  "notificationId": "N005",
+  "status": "SENT",
+  "message": "Payment notification sent successfully"
+}
+
+---
+
+## 6. Send Payment Failure Notification
+
+Endpoint: POST /api/notifications/payment-failure
+
+Description: Notify the customer when an electronic payment fails.
+
+Request Body:
+{
+  "customerId": "C001",
+  "paymentId": "P001",
+  "content": "Your electronic payment has failed. Please try again."
+}
+
+Response:
+{
+  "notificationId": "N006",
+  "status": "SENT",
+  "message": "Payment failure notification sent successfully"
+}
+
+---
+
+## 7. Get Customer Notifications
+
+Endpoint: GET /api/customers/{customerId}/notifications
+
+Description: Get notifications of a customer.
+
+Response:
+{
+  "customerId": "C001",
+  "notifications": [
     {
-      "tripId": "T001",
-      "pickupLocation": "District 1",
-      "destination": "Tan Son Nhat Airport",
-      "status": "COMPLETED",
-      "fare": 120000
+      "notificationId": "N001",
+      "type": "BOOKING",
+      "content": "Your trip booking has been created successfully.",
+      "status": "READ"
     },
     {
-      "tripId": "T002",
-      "pickupLocation": "District 5",
-      "destination": "District 7",
-      "status": "COMPLETED",
-      "fare": 90000
+      "notificationId": "N003",
+      "type": "TRIP_STATUS",
+      "content": "Your driver has arrived.",
+      "status": "UNREAD"
     }
   ]
 }
 
 ---
 
-## 6. Update Trip Status
+## 8. Mark Notification as Read
 
-Endpoint: PUT /api/trips/{tripId}/status
+Endpoint: PUT /api/notifications/{notificationId}/read
 
-Description: Update the current status of a trip.
-
-Request Body:
-{
-  "status": "IN_PROGRESS"
-}
-
-Possible statuses:
-- PENDING
-- ACCEPTED
-- ARRIVED
-- PICKED_UP
-- IN_PROGRESS
-- COMPLETED
-- CANCELLED
+Description: Mark a notification as read.
 
 Response:
 {
-  "tripId": "T001",
-  "status": "IN_PROGRESS",
-  "message": "Trip status updated successfully"
-}
-
----
-
-## 7. Calculate Trip Fare
-
-Endpoint: GET /api/trips/{tripId}/fare
-
-Description: Calculate the fare after the trip is completed.
-
-Response:
-{
-  "tripId": "T001",
-  "fare": 120000,
-  "currency": "VND",
-  "message": "Trip fare calculated successfully"
-}
-
----
-
-## 8. Rate Driver
-
-Endpoint: POST /api/trips/{tripId}/rating
-
-Description: Customer rates the driver after completing a trip.
-
-Request Body:
-{
-  "customerId": "C001",
-  "rating": 5,
-  "comment": "Good service"
-}
-
-Response:
-{
-  "tripId": "T001",
-  "rating": 5,
-  "message": "Driver rating submitted successfully"
+  "notificationId": "N001",
+  "status": "READ",
+  "message": "Notification marked as read"
 }
